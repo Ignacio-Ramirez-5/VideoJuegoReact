@@ -1,37 +1,36 @@
-"use client"
-
-import { useState, useEffect } from "react"
-import { Link } from "react-router-dom"
-import Slider from "react-slick"
-import "slick-carousel/slick/slick.css"
-import "slick-carousel/slick/slick-theme.css"
+// src/pages/Home.jsx
+import { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
+import Slider from "react-slick";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
 
 function Home() {
-  const [isLoading, setIsLoading] = useState(true)
-  const [games, setGames] = useState([])
+  const [isLoading, setIsLoading] = useState(true);
+  const [games, setGames] = useState([]);
 
   useEffect(() => {
     const fetchGames = async () => {
       try {
-        const response = await fetch("https://api.rawg.io/api/games?key=e621543c33ee44e48e7b82cfdc83fb23")
-        const data = await response.json()
-        setGames(data.results)
-        setIsLoading(false)
+        const response = await fetch("https://api.rawg.io/api/games?key=e621543c33ee44e48e7b82cfdc83fb23");
+        const data = await response.json();
+        setGames(data.results);
+        setIsLoading(false);
       } catch (error) {
-        console.error("Error al obtener los videojuegos:", error)
-        setIsLoading(false)
+        console.error("Error al obtener los videojuegos:", error);
+        setIsLoading(false);
       }
-    }
+    };
 
-    fetchGames()
-  }, [])
+    fetchGames();
+  }, []);
 
   if (isLoading) {
     return (
       <div className="min-h-screen flex items-center justify-center bg-gray-900">
         <div className="text-3xl font-bold text-emerald-400 animate-pulse">Cargando experiencias épicas...</div>
       </div>
-    )
+    );
   }
 
   const settings = {
@@ -57,7 +56,7 @@ function Home() {
         },
       },
     ],
-  }
+  };
 
   return (
     <div className="min-h-screen bg-gray-900 text-white">
@@ -146,8 +145,7 @@ function Home() {
         </section>
       </main>
     </div>
-  )
+  );
 }
 
-export default Home
-
+export default Home;
